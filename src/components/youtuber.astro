@@ -1,0 +1,229 @@
+---
+// src/components/youtuber.astro
+---
+
+<div class="hub-container">
+  <h1>My YouTube channel</h1>
+  <p class="subtitle">Explore my recent videos and learn Spanish in a fun way</p>
+
+  <!-- Categorías -->
+  <div class="categories">
+    <button class="category-btn active" data-category="all">All</button>
+    <button class="category-btn" data-category="tutorials">Tutorials</button>
+    <button class="category-btn" data-category="spanish-games">Learn Spanish with Video Games</button>
+    <button class="category-btn" data-category="vlogs">Vlogs</button>
+  </div>
+
+  <!-- Grid de videos -->
+  <div class="video-grid">
+    <a href="https://www.youtube.com/watch?v=vqBz1CXW_38" target="_blank" rel="noopener noreferrer" class="video-card" data-category="tutorials">
+      <div class="video-container">
+        <img src="https://img.youtube.com/vi/vqBz1CXW_38/maxresdefault.jpg" class="video-thumbnail">
+        <div class="video-play-button"></div>
+      </div>
+      <p>Tutorial: Basic Grammar in Spanish</p>
+    </a>
+    
+    <a href="https://www.youtube.com/watch?v=nADpU-UKe9Q" target="_blank" rel="noopener noreferrer" class="video-card" data-category="spanish-games">
+      <div class="video-container">
+        <img src="https://img.youtube.com/vi/nADpU-UKe9Q/maxresdefault.jpg" class="video-thumbnail">
+        <div class="video-play-button"></div>
+      </div>
+      <p>Learn Spanish playing</p>
+    </a>
+    
+    <a href="https://www.youtube.com/watch?v=d1zbpW456nY" target="_blank" rel="noopener noreferrer" class="video-card" data-category="vlogs">
+      <div class="video-container">
+        <img src="https://img.youtube.com/vi/d1zbpW456nY/maxresdefault.jpg" class="video-thumbnail">
+        <div class="video-play-button"></div>
+      </div>
+      <p>Vocabulary Games</p>
+    </a>
+  </div>
+
+  <!-- CTA Suscríbete -->
+  <div class="subscribe-section">
+    <a href="https://www.youtube.com/@ProfeYolandaSpanish" target="_blank" rel="noopener noreferrer" class="subscribe-btn">Subscribe</a>
+  </div>
+</div>
+
+<style>
+  :root {
+    --color-primario: #c75b7a;
+    --color-secundario: #ffb6c1;
+    --color-acento: #ffc0cb;
+    --color-texto-principal: #8b5a6f;
+    --color-texto-secundario: #886173;
+    --color-texto-terciario: #d97798;
+    --color-texto-oscuro: #5e042b;
+    --color-texto-claro: #ffffff;
+    --color-fondo: #fff5f7;
+    --sombra-suave: rgba(255, 182, 193, 0.4);
+    --sombra-intensa: rgba(199, 91, 122, 0.3);
+    --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-moderna: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .hub-container {
+    width: 100%;
+    padding: 3rem 1rem;
+    background-image: url("/fondo-prhase.png");
+    background-color: #fff5f7;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  h1 { 
+    font-size:clamp(2rem,5vw,3.5rem); 
+    text-align:center; 
+    margin-bottom:1rem; 
+    background: linear-gradient(90deg,#fff 0%,#c3508a 50%,#fff 100%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-family: var(--font-moderna);
+  }
+
+  p.subtitle { 
+    text-align:center; 
+    margin-bottom:2rem; 
+    font-size:1.5rem; 
+    color:var(--color-texto-oscuro); 
+    font-family:var(--font-moderna);
+  }
+
+  .categories { 
+    display:flex; 
+    justify-content:center; 
+    flex-wrap:wrap; 
+    gap:1rem; 
+    margin-bottom:2rem; 
+  }
+
+  .category-btn { 
+    padding:0.6rem 1.5rem; 
+    border:none; 
+    border-radius:50px; 
+    background:#222; 
+    color:#fff; 
+    cursor:pointer; 
+    transition:0.3s; 
+    font-family: var(--font-moderna); 
+  }
+
+  .category-btn:hover,
+  .category-btn.active {
+    background: var(--color-primario);
+  }
+
+  .video-grid { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
+    gap:1.5rem; 
+  }
+
+  .video-card { 
+    background:#222; 
+    border-radius:15px; 
+    overflow:hidden; 
+    transition:0.3s; 
+    cursor:pointer;
+    text-decoration: none;
+    display: block;
+  }
+
+  .video-card:hover { 
+    transform:scale(1.03); 
+    box-shadow:0 10px 30px rgba(199,91,122,0.5); 
+  }
+
+  .video-container { 
+    position:relative; 
+    width:100%; 
+    padding-top:56.25%; 
+    overflow:hidden; 
+  }
+
+  .video-thumbnail { 
+    position:absolute; 
+    top:0; 
+    left:0; 
+    width:100%; 
+    height:100%; 
+    object-fit:cover; 
+  }
+
+  .video-play-button { 
+    position:absolute; 
+    top:50%; 
+    left:50%; 
+    transform:translate(-50%,-50%); 
+    width:60px; 
+    height:60px; 
+    border-radius:50%; 
+    background:rgba(199,91,122,0.8); 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    font-size:2rem; 
+    pointer-events: none;
+  }
+
+  .video-play-button::after { 
+    content:"▶"; 
+    color:#fff; 
+  }
+
+  .video-card p { 
+    padding:0.5rem 1rem 1rem 1rem; 
+    font-size:1rem; 
+    color:#ddd; 
+    font-family: var(--font-moderna);
+  }
+
+  .subscribe-section { 
+    text-align:center; 
+    margin-top:3rem;
+  }
+
+  .subscribe-btn { 
+    background:var(--color-primario); 
+    padding:1rem 3rem; 
+    border-radius:50px; 
+    color:#fff; 
+    font-weight:bold; 
+    text-decoration:none; 
+    font-size:1.2rem; 
+    transition:0.3s; 
+    display:inline-block;
+    font-family: var(--font-moderna);
+  }
+
+  .subscribe-btn:hover { 
+    transform:translateY(-5px) scale(1.05); 
+    background:black; 
+  }
+</style>
+
+<script>
+  // Filtrar videos por categoría
+  const categoryButtons = document.querySelectorAll('.category-btn');
+  const videoCards = document.querySelectorAll('.video-card');
+
+  categoryButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelector('.category-btn.active')?.classList.remove('active');
+      btn.classList.add('active');
+      const category = btn.dataset.category;
+      
+      videoCards.forEach(card => {
+        if(category === 'all' || card.dataset.category === category){
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

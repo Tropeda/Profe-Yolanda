@@ -1,0 +1,232 @@
+---
+// OptionsSection.astro
+// Importar fuentes de Google Fonts
+const fontLink = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap";
+
+const options = [
+  {
+    icon: "/laptop.png",
+    text: "ONLINE LESSONS",
+    link: "#conocer"
+  },
+  {
+    icon: "/book.png",
+    text: "FACE TO FACE LESSONS",
+    link: "#aprender"
+  },
+  {
+    icon: "/control.png",
+    text: "VIDEOGAMES LESSONS",
+    link: "#mejorar"
+  },
+];
+---
+
+<!-- Importar Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href={fontLink} rel="stylesheet">
+
+<section class="options-section">
+  <div class="container">
+    <h2 class="section-title">"Hey, Yolanda, I would like to have...."</h2>
+    
+    <div class="options-grid">
+      {options.map((option) => (
+        <a href={option.link} class="option-card">
+          <div class="icon-wrapper">
+            <div class="icon-circle">
+              <img src={option.icon} alt={option.text} class="option-icon" />
+            </div>
+            <div class="connector-line"></div>
+          </div>
+          <div class="option-text">{option.text}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+/* ============================================
+   VARIABLES ROOT - SISTEMA DE DISEÑO
+   ============================================ */
+
+:root {
+  --color-primario: #c75b7a;
+  --color-secundario: #ffb6c1;
+  --color-acento: #ffc0cb;
+  
+  --color-texto-principal: #8b5a6f;
+  --color-texto-secundario: #886173;
+  --color-texto-terciario: #d97798;
+  --color-texto-oscuro: #5e042b;
+  --color-texto-claro: #ffffff;
+  
+  --color-fondo: #fff5f7;
+  --sombra-suave: rgba(255, 182, 193, 0.4);
+  
+  --gradiente-hero: linear-gradient(135deg, #ffd1dc 0%, #ffc0cb 30%, #ffb6c1 60%, #ffe4e9 100%);
+  --gradiente-linea: linear-gradient(90deg, #dc7988, #e5a0ac, #ffd1dc);
+  --gradiente-borde: linear-gradient(45deg, #ffc0cb, #ffb6c1, #ffd1dc, #ffe4e9, #ffc0cb);
+  
+  --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-moderna: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+  .options-section {
+    background-image: url("/fondo-prhase.png");
+    background-color: var(--color-fondo);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px 20px; 
+  }
+
+  .container {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--color-texto-terciario);
+    margin-bottom: 60px;
+    font-weight: 600;
+    line-height: 1.3;
+    font-family:var(--font-principal);
+    letter-spacing: -0.5px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .option-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .option-card:hover .icon-circle {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px var(--sombra-intensa);
+  }
+
+  .option-card:hover .option-text {
+    color: var(--color-texto-terciario);
+    border-color: var(--color-texto-terciario);
+  }
+
+  .icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .icon-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--color-texto-terciario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px var(--sombra-suave);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .option-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .connector-line {
+    width: 3px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--color-secundario), transparent);
+    margin-top: -5px;
+  }
+
+  .option-text {
+    padding: 15px 30px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    font-family: var(--font-principal);
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .options-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .options-section {
+      padding: 120px 20px; /* También más grande */
+    }
+
+    .section-title {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .options-grid {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+
+    .options-section {
+      padding: 100px 15px; /* También ampliado */
+    }
+
+    .icon-circle {
+      width: 100px;
+      height: 100px;
+    }
+
+    .option-icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    .connector-line {
+      height: 40px;
+    }
+
+    .option-text {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+    }
+  }
+</style>

@@ -1,11 +1,82 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from "../components/Front.astro";
+import Navbar from "../components/navbar.astro";
+import About from "../components/about.astro";
+import Price from "../components/price.astro";
+import Youtuber from "../components/youtuber.astro";
+import Shop from "../components/shop.astro";
+import Contact from "../components/contact.astro";
+import Footer from "../components/footer.astro";
+import GamingZoneModal from "../components/gamingzonemodal.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profe Yolanda - Spanish Teacher</title>
+  </head>
+
+  <body>
+    <Navbar />
+    <Hero />
+    <div id="about">
+      <About />
+    </div>
+    <div id="lessons">
+    </div>
+    <div id="price">
+      <Price />
+    </div>
+    <div id="youtube">
+      <Youtuber />
+    </div>
+    <div id="store">
+      <Shop />
+    </div>
+    <div id="contact">
+      <Contact />
+    </div>
+    <Footer />
+    
+    <GamingZoneModal />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .astro-devtools {
+  display: none !important;
+}
+
+</style>
+
+<script>
+  // Abrir Gaming Zone Modal
+  document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('openGamingZone');
+    const modal = document.getElementById('gamingZoneModal');
+    
+    if (openBtn) {
+      openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (modal) {
+          modal.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,717 @@
+---
+// PricingSection.astro
+const fontLink = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap";
+
+const pricingPlans = [
+  {
+    id: "online",
+    name: "Online Lessons",
+    icon: "/laptop.png",
+    priceEur: "20",
+    priceCzk: "500",
+    duration: "Per hour",
+    features: [
+      "Flexible scheduling",
+      "From anywhere in the world",
+      "Interactive virtual whiteboard",
+      "Personalized materials"
+    ],
+    gradient: "linear-gradient(135deg, #ff6b9d 0%, #c75b7a 100%)",
+    popular: false,
+    bookingUrl: "https://calendly.com/yolanda-ele/spanish-lesson?month=2023-06"
+  },
+  {
+    id: "face-to-face",
+    name: "Face to Face Lessons",
+    icon: "/book.png",
+    priceEur: "35",
+    priceCzk: "850",
+    duration: "Per hour",
+    features: [
+      "In-person interaction",
+      "Hands-on learning",
+      "Custom learning materials",
+      "Immediate feedback"
+    ],
+    gradient: "linear-gradient(135deg, #ff6b9d 0%, #c75b7a 100%)",
+    popular: false,
+    bookingUrl: "#"
+  },
+  {
+    id: "videogames",
+    name: "Videogames Lessons",
+    icon: "/control.png",
+    priceEur: "30",
+    priceCzk: "730",
+    duration: "Per hour",
+    features: [
+      "Learn through gaming",
+      "Problem-solving skills",
+      "Fun & engaging method",
+      "Strategic thinking boost"
+    ],
+    gradient: "linear-gradient(135deg, #ff6b9d 0%, #c75b7a 100%)",
+    popular: true,
+    bookingUrl: "#"
+  }
+];
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href={fontLink} rel="stylesheet">
+
+<section class="pricing-section">
+  <div class="background-decoration">
+    <div class="floating-circle circle-1"></div>
+    <div class="floating-circle circle-2"></div>
+    <div class="floating-circle circle-3"></div>
+  </div>
+
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        Choose Your <span class="highlight">Learning Path</span>
+      </h2>
+      <p class="section-subtitle">
+        Invest in yourself. Pick the perfect plan for your goals.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      {pricingPlans.map((plan, index) => (
+        <div 
+          class={`pricing-card ${plan.popular ? 'popular' : ''}`}
+          style={`--gradient: ${plan.gradient}; --delay: ${index * 0.15}s`}
+        >
+          {plan.popular && (
+            <div class="popular-badge">
+              <span> Most Popular</span>
+            </div>
+          )}
+
+          <div class="card-header">
+            <div class="icon-container">
+              <div class="icon-glow"></div>
+              <img src={plan.icon} alt={plan.name} class="plan-icon" />
+            </div>
+            <h3 class="plan-name">{plan.name}</h3>
+          </div>
+
+          <div class="price-container">
+            <div class="price-row">
+              <div class="price">{plan.priceEur}</div>
+              <div class="currency">€</div>
+            </div>
+            <div class="price-divider">/</div>
+            <div class="price-row czk">
+              <div class="price czk-price">{plan.priceCzk}</div>
+              <div class="currency czk-currency">Kč</div>
+            </div>
+            <div class="duration">{plan.duration}</div>
+          </div>
+
+          <ul class="features-list">
+            {plan.features.map((feature) => (
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <button class="cta-button" data-booking-url={plan.bookingUrl}>
+            <span>Book Now</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="card-decoration decoration-1"></div>
+          <div class="card-decoration decoration-2"></div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.cta-button');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const url = button.getAttribute('data-booking-url');
+        
+        // Si el URL es "#", redirigir a la sección de contacto
+        if (url === '#') {
+          e.preventDefault();
+          
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+            const navbar = document.querySelector('.navbar');
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;
+            const targetPosition = contactSection.offsetTop - navbarHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        } 
+        // Si hay un URL válido (diferente de "#"), abrir en nueva pestaña
+        else if (url && url !== '#') {
+          window.open(url, '_blank');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+:root {
+  --color-primario: #c75b7a;
+  --color-secundario: #ffb6c1;
+  --color-acento: #ffc0cb;
+  --color-texto-principal: #8b5a6f;
+  --color-texto-secundario: #886173;
+  --color-texto-terciario: #d97798;
+  --color-texto-oscuro: #5e042b;
+  --color-texto-claro: #ffffff;
+  --color-fondo: #fff5f7;
+  --sombra-suave: rgba(255, 182, 193, 0.4);
+  --sombra-intensa: rgba(199, 91, 122, 0.3);
+  --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-moderna: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.pricing-section {
+  background: linear-gradient(180deg, #fff5f7 0%, #ffe8ee 50%, #fff5f7 100%);
+  padding: 120px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decoration */
+.background-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.3), transparent);
+  animation: floatCircle 25s infinite ease-in-out;
+}
+
+.circle-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 300px;
+  height: 300px;
+  bottom: -50px;
+  right: -50px;
+  animation-delay: 8s;
+}
+
+.circle-3 {
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 16s;
+}
+
+@keyframes floatCircle {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-family: var(--font-moderna);
+  color: var(--color-texto-principal);
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #ff6b9d, #ffa8c5, #ff6b9d);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 3s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--color-texto-secundario);
+  font-family: var(--font-moderna);
+  font-weight: 400;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Pricing Card */
+.pricing-card {
+  background: white;
+  border-radius: 30px;
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: cardSlideUp 0.8s ease-out backwards;
+  animation-delay: var(--delay);
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pricing-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 60px rgba(194, 72, 106, 0.25);
+  border-color: var(--color-primario);
+}
+
+.pricing-card.popular {
+  border: 2px solid transparent;
+  border-radius: 30px;
+}
+
+.pricing-card.popular:hover {
+  transform: translateY(-15px);
+}
+
+/* Popular Badge */
+.popular-badge {
+  position: absolute;
+  top: 20px;
+  right: -55px;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff8fa3 100%);
+  color: white;
+  padding: 8px 45px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font-moderna);
+  transform: rotate(45deg);
+  box-shadow: 0 4px 15px rgba(255, 107, 138, 0.4);
+  letter-spacing: 0.5px;
+}
+
+/* Card Header */
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+  flex-shrink: 0;
+}
+
+.icon-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient);
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(20px);
+  transition: all 0.4s ease;
+}
+
+.pricing-card:hover .icon-glow {
+  opacity: 0.4;
+  transform: scale(1.3);
+}
+
+.plan-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 10px rgba(199, 91, 122, 0.3));
+  transition: transform 0.4s ease;
+}
+
+.pricing-card:hover .plan-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-family: var(--font-moderna);
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+  margin: 0;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Price Container */
+.price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 35px;
+  padding: 25px 0;
+  position: relative;
+  flex-shrink: 0;
+  min-height: 120px;
+  font-family: var(--font-moderna);
+}
+
+.price-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gradient), transparent);
+  opacity: 0.3;
+}
+
+.price-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.price-row.czk {
+  gap: 3px;
+}
+
+.price-divider {
+  font-size: 1.5rem;
+  color: var(--color-texto-secundario);
+  opacity: 0.5;
+  font-weight: 300;
+  align-self: center;
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-family: var(--font-moderna);
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 12px;
+}
+
+.currency.czk-currency {
+  font-size: 1.3rem;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+.price {
+  font-size: 4.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.price.czk-price {
+  font-size: 4rem;
+  opacity: 0.9;
+}
+
+.duration {
+  font-size: 1rem;
+  color: var(--color-texto-secundario);
+  font-family: var(--font-moderna);
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* Features List */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 35px 0;
+  flex-grow: 1;
+  min-height: 200px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0px 0;
+  font-family: var(--font-principal);
+  color: var(--color-texto-principal);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-height: 50px;
+}
+
+.feature-item:hover {
+  transform: translateX(5px);
+  color: var(--color-texto-terciario);
+}
+
+.check-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-texto-terciario);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover .check-icon {
+  transform: scale(1.2);
+}
+
+/* CTA Button */
+.cta-button {
+  width: 100%;
+  background: var(--gradient);
+  color: white;
+  border: none;
+  padding: 18px 30px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: var(--font-moderna);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 25px rgba(255, 107, 138, 0.3);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 107, 138, 0.45);
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* Card Decorations */
+.card-decoration {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gradient);
+  opacity: 0.05;
+  transition: all 0.5s ease;
+}
+
+.decoration-1 {
+  width: 200px;
+  height: 200px;
+  top: -100px;
+  right: -100px;
+}
+
+.decoration-2 {
+  width: 150px;
+  height: 150px;
+  bottom: -75px;
+  left: -75px;
+}
+
+.pricing-card:hover .card-decoration {
+  opacity: 0.1;
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 80px 20px;
+  }
+
+  .section-header {
+    margin-bottom: 50px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .pricing-card {
+    min-height: auto;
+  }
+
+  .price {
+    font-size: 3.5rem;
+  }
+
+  .price.czk-price {
+    font-size: 3rem;
+  }
+
+  .currency {
+    font-size: 1.3rem;
+  }
+
+  .currency.czk-currency {
+    font-size: 1.1rem;
+  }
+
+  .pricing-card {
+    padding: 35px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-section {
+    padding: 60px 15px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .price {
+    font-size: 3rem;
+  }
+
+  .price.czk-price {
+    font-size: 2.5rem;
+  }
+
+  .currency {
+    font-size: 1.2rem;
+  }
+
+  .currency.czk-currency {
+    font-size: 1rem;
+  }
+
+  .popular-badge {
+    font-size: 0.75rem;
+    padding: 6px 40px;
+  }
+
+  .feature-item {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    padding: 16px 25px;
+    font-size: 1rem;
+  }
+}
+</style>

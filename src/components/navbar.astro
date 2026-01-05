@@ -1,0 +1,220 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <span class="logo-text">Profe Yolanda</span>
+      <span class="logo-dot">.</span>
+    </a>
+
+
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+
+   <ul class="nav-links">
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#youtube">Youtube Channel</a></li>
+      <li><a href="#store">Online Store</a></li>
+      <li><a href="#contact" class="contact-btn">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+/* ============================================
+   VARIABLES ROOT - SISTEMA DE DISEÑO
+   ============================================ */
+
+:root {
+  /* === COLORES === */
+  --color-primario: #c75b7a;
+  --color-secundario: #ffb6c1;
+  --color-acento: #ffc0cb;
+  
+  --color-texto-principal: #8b5a6f;
+  --color-texto-secundario: #886173;
+  --color-texto-terciario: #d97798;
+  --color-texto-oscuro: #5e042b;
+  --color-texto-claro: #ffffff;
+  
+  --color-fondo: #fff5f7;
+    --color-fondo-menu: #fff5f7; /* fondo opaco del menú */
+  --sombra-suave: rgba(255, 182, 193, 0.4);
+  
+  /* Gradientes */
+  --gradiente-hero: linear-gradient(135deg, #ffd1dc 0%, #ffc0cb 30%, #ffb6c1 60%, #ffe4e9 100%);
+  --gradiente-linea: linear-gradient(90deg, #dc7988, #e5a0ac, #ffd1dc);
+  --gradiente-borde: linear-gradient(45deg, #ffc0cb, #ffb6c1, #ffd1dc, #ffe4e9, #ffc0cb);
+  
+  /* === TIPOGRAFÍAS === */
+  --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-moderna: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--color-fondo-transparente);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px var(--sombra-suave);
+    animation: slideDown 0.6s ease-out;
+    font-family: var(--font-principal);
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover { transform: scale(1.05); }
+
+  .logo-text { color: var(--color-primario); text-shadow: 2px 2px 4px rgba(255, 192, 203, 0.3); }
+  .logo-dot { color: var(--color-secundario)}
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+  .menu-toggle span { width: 25px; height: 3px; background: var(--color-primario); border-radius: 3px; transition: all 0.3s ease; }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--color-texto-principal);
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--color-secundario), var(--color-acento));
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links a:hover { 
+    color: var(--color-primario); 
+  }
+
+
+ .contact-btn {
+  background: var(--color-primario);
+  color: var(--color-texto-claro) !important;
+  padding: 0.7rem 1.8rem !important;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px var(--sombra-intensa);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Evitar el efecto de barra en el botón de contacto */
+.contact-btn::after {
+  display: none;
+}
+
+.contact-btn:hover {
+  transform: scale(1.15); 
+  box-shadow: 0 6px 20px rgba(1, 1, 1, 0.5); /* sombra más intensa */
+}
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .menu-toggle { display: flex; z-index: 1001; }
+    .nav-links {
+      position: fixed; top: 0; right: -100%;
+      height: 100vh; width: 70%; max-width: 300px;
+      background: var(--gradiente-fondo);
+      flex-direction: column; justify-content: center; gap: 2rem;
+      padding: 2rem; box-shadow: -5px 0 20px var(--sombra-suave);
+      transition: right 0.4s ease;
+    }
+
+    .nav-links {
+    background: transparent; 
+  }
+
+  .nav-links.active {
+    background: var(--color-secundario); /* fondo opaco cuando el menú está abierto */
+    backdrop-filter: none; /* opcional, si quieres quitar cualquier blur */
+  }
+    
+    .nav-links.active { right: 0; }
+    .nav-links a { color:var(--color-texto-oscuro); font-size: 1.3rem; text-align: center; }
+    .nav-links a::after { background: var(--color-fondo-menu); }
+
+    .contact-btn { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); }
+    .contact-btn:hover { background: rgba(255, 255, 255, 0.4); }
+
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+  }
+</style>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle?.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks?.classList.toggle('active');
+  });
+
+  const links = document.querySelectorAll('.nav-links a');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle?.classList.remove('active');
+      navLinks?.classList.remove('active');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!menuToggle?.contains(e.target) && !navLinks?.contains(e.target)) {
+      menuToggle?.classList.remove('active');
+      navLinks?.classList.remove('active');
+    }
+  });
+</script>

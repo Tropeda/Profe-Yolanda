@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer</title>
+  <style>
+    :root {
+      /* COLORES */
+      --color-primario: #c75b7a;
+      --color-secundario: #ffb6c1;
+      --color-acento: #ffc0cb;
+      --color-texto-principal: #8b5a6f;
+      --color-texto-secundario: #886173;
+      --color-texto-terciario: #d97798;
+      --color-texto-oscuro: #5e042b;
+      --color-texto-claro: #ffffff;
+      --color-fondo: #fff5f7;
+
+      /* GRADIENTES */
+      --gradiente-hero: linear-gradient(135deg, #ffd1dc 0%, #ffc0cb 30%, #ffb6c1 60%, #ffe4e9 100%);
+      --gradiente-linea: linear-gradient(90deg, #dc7988, #e5a0ac, #ffd1dc);
+
+      /* TIPOGRAFÍA */
+      --font-principal: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-principal);
+      background-color: var(--color-fondo);
+    }
+
+    .footer-section {
+      width: 100%;
+      padding: 3rem 1.5rem 2rem;
+      background: var(--color-fondo);
+      border-top: 1px solid rgba(199, 91, 122, 0.15);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* BRAND */
+    .footer-brand {
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 0 0.5rem 0;
+      font-family: var(--font-moderna);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      justify-content: center;
+    }
+
+    .footer-logo-text {
+      color: var(--color-primario);
+      text-shadow: 2px 2px 4px rgba(255, 192, 203, 0.3);
+    }
+
+    .footer-logo-dot {
+      color: var(--color-primario);
+    }
+
+    .footer-tagline {
+      font-size: 0.95rem;
+      color: var(--color-texto-oscuro);
+      font-family: var(--font-moderna);
+      margin: 0;
+      opacity: 0.8;
+    }
+
+    /* LINKS */
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-left: -1rem;
+    }
+
+    .footer-link {
+      color: var(--color-texto-principal);
+      text-decoration: none;
+      font-family: var(--font-moderna);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #c75b7a, #ff8fb8);
+      transition: width 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--color-primario);
+      transform: translateY(-2px);
+    }
+
+    .footer-link:hover::after {
+      width: 100%;
+    }
+
+    .footer-separator {
+      color: var(--color-texto-terciario);
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    /* COPYRIGHT */
+    .footer-copyright {
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(199, 91, 122, 0.1);
+      width: 100%;
+    }
+
+    .footer-copyright p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--color-texto-secundario);
+      font-family: var(--font-moderna);
+      opacity: 0.7;
+    }
+
+    /* MODALES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(199, 91, 122, 0.3);
+      animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--color-acento);
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      color: var(--color-primario);
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .close-modal {
+      background: var(--color-primario);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      line-height: 1;
+    }
+
+    .close-modal:hover {
+      background: var(--color-texto-oscuro);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .modal-body {
+      color: var(--color-texto-principal);
+      line-height: 1.8;
+    }
+
+    .modal-body h3 {
+      color: var(--color-primario);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 1rem;
+    }
+
+    .modal-body ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .footer-links {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .footer-separator {
+        display: none;
+      }
+
+      .footer-logo {
+        font-size: 1.7rem;
+      }
+
+      .footer-tagline {
+        font-size: 0.9rem;
+      }
+
+      .modal-content {
+        padding: 2rem 1.5rem;
+        max-height: 90vh;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* FLECHA HACIA ARRIBA */
+    #scrollToTopBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #c75b7a, #ff8fb8);
+      color: var(--color-texto-claro);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(199, 91, 122, 0.3);
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    #scrollToTopBtn:hover {
+      background: linear-gradient(135deg, #ff8fb8, #c75b7a);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(199, 91, 122, 0.3);
+    }
+
+    #scrollToTopBtn::after {
+      content: "↑";
+      font-size: 24px;
+      font-weight: bold;
+      display: block;
+      line-height: 1;
+    }
+
+    /* Scrollbar personalizado para modales */
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: var(--color-fondo);
+      border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: var(--color-primario);
+      border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: var(--color-texto-oscuro);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================
+     FOOTER
+     ============================ -->
+<footer class="footer-section">
+  <div class="footer-container">
+
+    <!-- Logo o nombre -->
+    <div class="footer-brand">
+      <h3 class="footer-logo">
+        <span class="footer-logo-text">Profe Yolanda</span>
+        <span class="footer-logo-dot">.</span>
+      </h3>
+      <p class="footer-tagline">Spanish Learning Resources</p>
+    </div>
+
+    <!-- Links de políticas -->
+    <div class="footer-links">
+      <span class="footer-separator">•</span>
+      <a id="openTerms" class="footer-link">Terms and conditions</a>
+      <span class="footer-separator">•</span>
+      <a id="openCookies" class="footer-link">Cookies</a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright">
+      <p>© 2025 Profe Yolanda. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Terms and Conditions</h2>
+      <button class="close-modal" data-modal="termsModal">×</button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Last updated:</strong> December 2025</p>
+      
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing and using Profe Yolanda's services, you accept and agree to be bound by the terms and provision of this agreement.</p>
+      
+      <h3>2. Use of Services</h3>
+      <p>Our Spanish learning services are provided for educational purposes. You agree to:</p>
+      <ul>
+        <li>Use the services only for lawful purposes</li>
+        <li>Not reproduce, distribute, or modify our content without permission</li>
+        <li>Respect intellectual property rights</li>
+        <li>Maintain the confidentiality of your account</li>
+      </ul>
+      
+      <h3>3. Booking and Payments</h3>
+      <p>All lesson bookings are subject to availability. Payment terms will be communicated at the time of booking. Cancellation policies apply and will be provided with your booking confirmation.</p>
+      
+      <h3>4. Intellectual Property</h3>
+      <p>All materials, including but not limited to lesson content, videos, and resources, are the property of Profe Yolanda and are protected by copyright laws.</p>
+      
+      <h3>5. Limitation of Liability</h3>
+      <p>Profe Yolanda shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of or inability to use the services.</p>
+      
+      <h3>6. Changes to Terms</h3>
+      <p>We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms.</p>
+      
+      <h3>7. Contact</h3>
+      <p>For questions about these terms, please contact us through our website's contact form.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE COOKIES -->
+<div id="cookiesModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Cookie Policy</h2>
+      <button class="close-modal" data-modal="cookiesModal">×</button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Last updated:</strong> December 2025</p>
+      
+      <h3>What are Cookies?</h3>
+      <p>Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our site.</p>
+      
+      <h3>Types of Cookies We Use</h3>
+      
+      <h4>Essential Cookies</h4>
+      <p>These cookies are necessary for the website to function properly. They enable core functionality such as security, network management, and accessibility.</p>
+      
+      <h4>Analytics Cookies</h4>
+      <p>We use analytics cookies to understand how visitors interact with our website. This helps us improve our services and user experience.</p>
+      
+      <h4>Preference Cookies</h4>
+      <p>These cookies allow our website to remember choices you make (such as language preferences) and provide enhanced, personalized features.</p>
+      
+      <h3>Third-Party Cookies</h3>
+      <p>We may use third-party services such as Google Analytics and booking platforms (Calendly) that also set cookies. These services have their own privacy policies.</p>
+      
+      <h3>Managing Cookies</h3>
+      <p>You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. However, if you do this, you may have to manually adjust some preferences every time you visit our site.</p>
+      
+      <h3>Your Consent</h3>
+      <p>By using our website, you consent to the use of cookies in accordance with this policy. If you do not agree to our use of cookies, you should set your browser settings accordingly or not use our website.</p>
+      
+      <h3>Contact Us</h3>
+      <p>If you have any questions about our use of cookies, please contact us through our website's contact form.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BOTÓN HACIA ARRIBA -->
+<button id="scrollToTopBtn" title="Ir arriba"></button>
+
+<script>
+  // Mostrar u ocultar el botón según la posición del scroll
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.style.display = 'flex';
+    } else {
+      scrollToTopBtn.style.display = 'none';
+    }
+  });
+
+  // Al hacer clic, subir suavemente al inicio
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // ====== MODALES ======
+  const termsModal = document.getElementById('termsModal');
+  const cookiesModal = document.getElementById('cookiesModal');
+  const openTermsBtn = document.getElementById('openTerms');
+  const openCookiesBtn = document.getElementById('openCookies');
+  const closeButtons = document.querySelectorAll('.close-modal');
+
+  // Abrir modal de términos
+  openTermsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    termsModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Abrir modal de cookies
+  openCookiesBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    cookiesModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Cerrar modales con botón X
+  closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const modalId = button.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+  });
+
+  // Cerrar modales al hacer clic fuera del contenido
+  window.addEventListener('click', (e) => {
+    if (e.target === termsModal) {
+      termsModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    if (e.target === cookiesModal) {
+      cookiesModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  // Cerrar modales con tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      termsModal.classList.remove('active');
+      cookiesModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
+
+</body>
+</html>

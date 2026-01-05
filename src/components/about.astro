@@ -1,0 +1,238 @@
+---
+// WelcomeSection.astro
+---
+
+<section class="welcome-section">
+  <div class="container">
+    <div class="content-wrapper">
+      <!-- Imagen -->
+      <div class="image-container">
+        <div class="image-frame">
+          <img 
+            src="/about.jpg" 
+            alt="Welcome" 
+            class="profile-image"
+          />
+        </div>
+      </div>
+
+      <!-- Contenido de texto -->
+      <div class="text-content">
+        <h2 class="greeting">welcome!</h2>
+        <h1 class="title">Let's break the ice</h1>
+        
+        <p class="description">
+          I'm a teacher from Spain with a deep passion for languages and education. 
+          I am committed to becoming the best version of myself by continuously 
+          improving my teaching skills. Dedicated and always ready to help with a smile, 
+          I strive to inspire others through my work and lifelong learning.
+        </p>
+
+        <p class="description">
+          I have experience working with all types of students. I have worked at various academies and at the Cervantes Institute in Prague. I am currently a teacher at two secondary schools, and I give online classes, where I teach Spanish using different video games such as Minecraft and Stardew Valley, among others.
+        </p>
+
+        <a href="/CV Yolanda.pdf" download="CV Yolanda.pdf" class="cta-button">
+          TAKE A LOOK AT MY CV
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+ /* ============================================
+   VARIABLES ROOT - SISTEMA DE DISEÑO
+   ============================================ */
+
+:root {
+  /* === COLORES === */
+  --color-primario: #c75b7a;
+  --color-secundario: #ffb6c1;
+  --color-acento: #ffc0cb;
+  
+  --color-texto-principal: #8b5a6f;
+  --color-texto-secundario: #886173;
+  --color-texto-terciario: #d97798;
+  --color-texto-oscuro: #5e042b;
+  --color-texto-claro: #ffffff;
+  
+  --color-fondo: #fff5f7;
+  --sombra-suave: rgba(255, 182, 193, 0.4);
+  
+  /* Gradientes */
+  --gradiente-hero: linear-gradient(135deg, #ffd1dc 0%, #ffc0cb 30%, #ffb6c1 60%, #ffe4e9 100%);
+  --gradiente-linea: linear-gradient(90deg, #dc7988, #e5a0ac, #ffd1dc);
+  --gradiente-borde: linear-gradient(45deg, #ffc0cb, #ffb6c1, #ffd1dc, #ffe4e9, #ffc0cb);
+  
+  /* === TIPOGRAFÍAS === */
+  --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-moderna: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+  .welcome-section {
+    background: linear-gradient(135deg, #ffd4d4 0%, #ffe5e5 50%, #fff0e8 100%);
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .welcome-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+
+  .image-container {
+    position: relative;
+  }
+
+  .image-frame {
+    position: relative;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+  }
+
+  .image-frame:hover {
+    transform: rotate(0deg) scale(1.02);
+  }
+
+  .profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .text-content {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    font-family: var(--font-principal);
+  }
+
+  .greeting {
+    font-family: 'Brush Script MT', cursive, sans-serif;
+    font-size: 32px;
+    margin: 0 0 5px 0;
+    color: #333;
+    font-weight: 400;
+  }
+
+  .title {
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    color: #1a1a1a;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 16px;
+  }
+
+  .description strong {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--color-acento);
+    color: #1a1a1a;
+    border: none;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px #6e193e;
+  }
+
+  .cta-button:focus {
+    outline: none;
+  }
+
+  @media (max-width: 968px) {
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .title {
+      font-size: 36px;
+    }
+
+    .image-frame {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .welcome-section {
+      padding: 60px 20px; 
+    }
+
+    .text-content {
+      padding: 30px 20px;
+    }
+
+    .title {
+      font-size: 28px;
+    }
+
+    .greeting {
+      font-size: 24px;
+    }
+
+    .media-logos {
+      gap: 20px;
+    }
+
+    .logo-item {
+      font-size: 14px;
+    }
+  }
+</style>

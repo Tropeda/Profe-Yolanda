@@ -1,0 +1,224 @@
+---
+// src/components/Front.astro
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hey">hey everybody,</p>
+    <h1 class="title">I'm Yolanda López</h1>
+    <p class="subtitle">
+      I am a teacher from Spain. I really like languages, teaching. I strife to become a better version of myself by improving my teaching skills every day. I am always willing to help with a smile.
+    </p>
+    <p class="welcome">
+      If you want to learn Spanish in an easy, dynamic and fun way, don't hesitate to ask about my lessons. 
+    </p>
+    <div class="buttons-container">
+      <a href="#lessons" class="hero-btn">
+        <img src="/class.png" alt="Clases" class="btn-icon"> Lessons
+      </a>
+      <a href="#contact" class="hero-btn">
+        <img src="/gmail.png" alt="Contacto" class="btn-icon"> Contact
+      </a>
+      <!-- ESTE es el botón que abre el modal -->
+      <button id="openGamingZone" class="hero-btn">
+        <img src="/control.png" alt="Gaming" class="btn-icon"> Gaming Zone
+      </button>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="image-wrapper">
+      <img src="/yolanda.jpg" alt="Foto personal">
+    </div>
+  </div>
+</section>
+
+<style>
+:root {
+  /* COLORES */
+  --color-primario: #c75b7a;
+  --color-secundario: #ffb6c1;
+  --color-acento: #ffc0cb;
+  --color-texto-principal: #8b5a6f;
+  --color-texto-secundario: #886173;
+  --color-texto-terciario: #d97798;
+  --color-texto-oscuro: #5e042b;
+  --color-texto-claro: #ffffff;
+  --color-fondo: #fff5f7;
+
+  /* GRADIENTES */
+  --gradiente-hero: linear-gradient(135deg, #ffd1dc 0%, #ffc0cb 30%, #ffb6c1 60%, #ffe4e9 100%);
+  --gradiente-linea: linear-gradient(90deg, #dc7988, #e5a0ac, #ffd1dc);
+
+  /* TIPOGRAFÍA */
+  --font-principal: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-principal);
+  background: var(--color-fondo);
+  overflow-x: hidden;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 6rem);
+  min-height: 100vh;
+  background: var(--gradiente-hero);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255,192,203,0.3) 0%, transparent 50%);
+  animation: float 15s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+.hero-content {
+  flex: 1 1 400px;
+  max-width: 700px;
+  z-index: 2;
+  animation: slideInLeft 0.8s ease-out;
+  padding: 2rem;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.hey { font-size: clamp(1.2rem, 2vw, 2rem); color: #d97798; font-style: italic; font-weight: 500; margin-bottom: 0.7rem; font-family: cursives; }
+.title { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 800; color: #c75b7a; line-height: 1.1; text-shadow: 2px 4px 8px rgba(255,192,203,0.4); margin-bottom: 1rem; font-family: var(--font-principal);}
+.title::after { content: ''; display: block; width: 100px; max-width: 30%; height: 6px; background: var(--gradiente-linea); border-radius: 3px; margin-top: 1rem; margin-left: 0; }
+.subtitle { font-size: clamp(1rem, 2vw, 1.5rem); line-height: 1.7; color: var(--color-texto-oscuro); margin-bottom: 1.5rem; font-weight: 300;font-family: var(--font-principal); }
+.welcome { font-size: clamp(0.9rem, 1.8vw, 1.1rem); color: var(--color-texto-secundario); font-weight: 400; font-family: var(--font-principal);}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: row;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+  display: flex;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  color: var(--color-primario);
+  border: 2px solid #ffc0cb;
+  box-shadow: 0 8px 25px rgba(255,182,193,0.3), inset 0 1px 2px rgba(255,255,255,0.5);
+  text-align: center;
+  transition: all 0.3s ease;
+  font-family: var(--font-principal);
+  cursor: pointer;
+}
+
+.hero-btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.7); color: #b54a69; }
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.hero-image {
+  flex: 1 1 300px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.image-wrapper {
+  width: clamp(200px, 40vw, 500px);
+  aspect-ratio: 1/1;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: linear-gradient(45deg, #ffc0cb, #ffb6c1, #ffd1dc, #ffe4e9, #ffc0cb);
+  border-radius: 50%;
+  animation: rotate 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 8px solid rgba(255,255,255,0.6);
+  box-shadow: 0 20px 60px rgba(255,182,193,0.4);
+  transition: transform 0.3s ease;
+}
+
+.hero-image img:hover { transform: scale(1.05); }
+
+@media (max-width: 768px) {
+  .hero { flex-direction: column; padding: 2rem; }
+  .hero-content { text-align: center; margin-bottom: 2rem; }
+  .buttons-container { flex-direction: column; }
+}
+</style>
+
+<script>
+  // Smooth scroll para los enlaces internos
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        const navbar = document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const targetPosition = targetSection.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>

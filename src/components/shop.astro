@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Tienda Online</title>
+</head>
+<body>
+
+<!-- ============================
+     SECCIÓN: MI TIENDA ONLINE (MEJORADA)
+     ============================ -->
+<section class="store-section">
+  <div class="store-container">
+
+    <h2 class="store-title">My Online Store</h2>
+    <p class="store-subtitle">
+      Educational materials, activities & creative Spanish-learning resources
+    </p>
+
+    <!-- CONTENEDOR PRINCIPAL EN 2 COLUMNAS -->
+    <div class="store-content">
+
+      <!-- ======= COLUMNA IZQUIERDA: FOTO ======= -->
+      <div class="store-image-wrapper">
+        <a href="https://www.teacherspayteachers.com/store/pixele" 
+          class="store-image-link" 
+          target="_blank" 
+          rel="noopener noreferrer">
+          <img src="/shop.jpg" alt="My online store" class="store-image">
+        </a>
+        <div class="store-glow"></div>
+        
+        <!-- Botón debajo de la imagen -->
+        <a href="https://www.teacherspayteachers.com/store/pixele" 
+           class="store-button" 
+           target="_blank">
+           Visit My Store →
+        </a>
+      </div>
+
+      <!-- ======= COLUMNA DERECHA: RECURSOS ======= -->
+      <div class="store-resources">
+
+        <a href="https://www.teacherspayteachers.com/store/pixele" class="resource-card" target="_blank">
+          <img src="/file1.png" alt="Recurso 1">
+        </a>
+
+        <a href="https://www.teacherspayteachers.com/store/pixele" class="resource-card" target="_blank">
+          <img src="/file2.png" alt="Recurso 2">
+        </a>
+
+        <a href="https://www.teacherspayteachers.com/store/pixele" class="resource-card" target="_blank">
+          <img src="/file3.png" alt="Recurso 3">
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+ :root {
+  --color-primario: #c75b7a;
+  --color-secundario: #ffb6c1;
+  --color-acento: #ffc0cb;
+  --color-texto-principal: #8b5a6f;
+  --color-texto-secundario: #886173;
+  --color-texto-terciario: #d97798;
+  --color-texto-oscuro: #5e042b;
+  --color-texto-claro: #ffffff;
+  --color-fondo: #fff5f7;
+  --sombra-suave: rgba(255, 182, 193, 0.4);
+  --sombra-intensa: rgba(199, 91, 122, 0.3);
+  --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-moderna: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.store-section {
+  width: 100%;
+  padding: 6rem 1.5rem;
+  background: linear-gradient(135deg, #fff0f4 0%, #ffe1ec 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.store-container {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+/* Título */
+.store-title {
+  font-size: clamp(2.6rem, 5vw, 3.7rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #c75b7a, #ff8fb8, #ffa5c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-moderna);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.store-subtitle {
+  font-size: 1.4rem;
+  color: var(--color-texto-oscuro);
+  margin-bottom: 3rem;
+  font-family: var(--font-moderna);
+  opacity: 0.85;
+}
+
+.store-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* FOTO */
+.store-image-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.store-image-link {
+  display: block;
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 10px 30px rgba(199, 91, 122, 0.25);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.store-image-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 18px 45px rgba(199, 91, 122, 0.35);
+}
+
+.store-image {
+  width: 100%;
+  height: auto;
+}
+
+.store-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  z-index: 1;
+  background: radial-gradient(circle at center,
+      rgba(255, 150, 180, 0.55),
+      rgba(255, 200, 220, 0.1),
+      transparent 100%);
+  filter: blur(25px);
+  animation: glowPulse 4s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* ============================
+   TARJETAS DE RECURSOS DERECHA
+   ============================ */
+.store-resources {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.resource-card {
+  display: block;
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  padding-bottom: 0rem;
+  text-decoration: none;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(199, 91, 122, 0.18);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(199, 91, 122, 0.28);
+}
+
+.resource-card img {
+  width: 100%;
+  height: auto;
+}
+
+.resource-card h3 {
+  font-size: 1.2rem;
+  padding: 1rem;
+  color: #c75b7a;
+  font-weight: 700;
+  font-family: var(--font-moderna);
+}
+
+/* BOTÓN */
+.store-button {
+  display: inline-block;
+  background: linear-gradient(90deg, #c75b7a, #ff8fb8);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(199, 91, 122, 0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: var(--font-moderna);
+  align-self: center;
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  margin-top: 3rem;
+}
+
+.store-button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 30px rgba(199, 91, 122, 0.45);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .store-content {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+</body>
+</html>
